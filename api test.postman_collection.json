@@ -1,1 +1,369 @@
-
+{
+	"info": {
+		"_postman_id": "7dd087b0-415d-4431-bb52-f2c8e22c79cb",
+		"name": "api test",
+		"description": "Написать автоматические тесты на /vacancies endpoint в api.hh.ru.\r\nПокрыть тестами только поле text",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Simple get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6abc1b1-7b12-44da-bed0-8fb86a79a9f9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response type is a json\", function () {\r",
+							"  pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.hh.ru/vacancies",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hh",
+						"ru"
+					],
+					"path": [
+						"vacancies"
+					]
+				},
+				"description": "Проверяет успешность простого get-запроса без параметров"
+			},
+			"response": []
+		},
+		{
+			"name": "With null text param",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c64e0d8f-7fb1-402c-a91f-ab9bd55da775",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response type is a json\", function () {\r",
+							"  pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.hh.ru/vacancies?text=",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hh",
+						"ru"
+					],
+					"path": [
+						"vacancies"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": ""
+						}
+					]
+				},
+				"description": "Делаем запром с пустым значением параметра text.\r\nИнтересно, что здесь ответ приходит медленнее, чем без указания параметра в запросе.\r\nСчитаю, что ожидаемое время д.б. не больше, чем без параметров. Потому тест остается упавшим."
+			},
+			"response": []
+		},
+		{
+			"name": "With or",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f4f7b541-5c15-4382-ae47-306bccf42e2f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response type is a json\", function () {\r",
+							"  pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.hh.ru/vacancies?text=нефть OR бензин",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hh",
+						"ru"
+					],
+					"path": [
+						"vacancies"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "нефть OR бензин"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "With or, and",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09f31f0d-9ac3-4ca1-83e6-bb86c1f1e6d2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response type is a json\", function () {\r",
+							"  pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.hh.ru/vacancies?text=(продажи OR sales) AND (алкоголь OR alcohol)",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hh",
+						"ru"
+					],
+					"path": [
+						"vacancies"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "(продажи OR sales) AND (алкоголь OR alcohol)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incorrect param",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eab2607b-493e-4ccc-843c-4dd405862d2b",
+						"exec": [
+							"pm.test('ResultSet is empty', function () {\r",
+							"    pm.expect(pm.response.json().items.length).to.equal(0);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response type is a json\", function () {\r",
+							"  pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.hh.ru/vacancies?text=COMPANY_E:Сбер",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hh",
+						"ru"
+					],
+					"path": [
+						"vacancies"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "COMPANY_E:Сбер"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unsupported language",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1533af27-c270-450b-85ef-0118f8043231",
+						"exec": [
+							"pm.test('ResultSet is empty', function () {\r",
+							"    pm.expect(pm.response.json().items.length).to.equal(0);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response type is a json\", function () {\r",
+							"  pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.hh.ru/vacancies?text=အသားညှပ်ပေါင်မုန့်",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hh",
+						"ru"
+					],
+					"path": [
+						"vacancies"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "အသားညှပ်ပေါင်မုန့်"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Extremly long param",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c8a489a-aed0-4e51-881e-3271791d3ff3",
+						"exec": [
+							"pm.test(\"Status code is 502\", function () {\r",
+							"    pm.response.to.have.status(502);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response type is a json\", function () {\r",
+							"  pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.hh.ru/vacancies?text=Некоторые параметры принимают множественные значения: key=value%26key=value.\n\n    text — текстовое поле.\n    Переданное значение ищется в полях вакансии, указанных в параметре search_field.\n    Доступен язык запросов, как и на основном сайте: https://hh.ru/article/1175. Специально для этого поля есть автодополнение.\n\n    search_field — область поиска.\n    Справочник с возможными значениями: vacancy_search_fields в /dictionaries.\n    По умолчанию, используются все поля.\n    Возможно указание нескольких значений.\n\n    experience — опыт работы.\n    Справочник с возможными значениями: experience в /dictionaries.\n\n    employment — тип занятости.\n    Справочник с возможными значениями: employment в /dictionaries.\n    Возможно указание нескольких значений.\n\n    schedule — график работы.\n    Справочник с возможными значениями: schedule в /dictionaries.\n    Возможно указание нескольких значений.\n\n    area — регион. Справочник с возможными значениями: /areas.\n    Возможно указание нескольких значений.\n\n    metro — ветка или станция метро.\n    Справочник с возможными значениями: /metro.\n    Возможно указание нескольких значений.\n\n    specialization — профобласть или специализация.\n    Справочник с возможными значениями: /specializations.\n    Возможно указание нескольких значений.\n\n    industry - индустрия компании, разместившей вакансию. Справочник с возможными значениями: /industries. Возможно указание нескольких значений.\n\n    employer_id — идентификатор компании.\n    Возможно указание нескольких значений.\n\n    currency — код валюты.\n    Справочник с возможными значениями: currency (ключ code) в /dictionaries.\n    Имеет смысл указывать только совместно с параметром salary.\n\n    salary — размер заработной платы.\n    Если указано это поле, но не указано currency, то используется значение RUR у currency.\n    При указании значения будут найдены вакансии, в которых вилка зарплаты близка к указанной в запросе. При этом значения пересчитываются по текущим курсам ЦБ РФ. Например, при указании salary=100%26currency=EUR будут найдены вакансии, где вилка зарплаты указана в рублях и после пересчёта в Евро близка к 100 EUR. По умолчанию будут также найдены вакансии, в которых вилка зарплаты не указана, чтобы такие вакансии отфильтровать, используйте only_with_salary=true.\n\n    label — фильтр по меткам вакансий.\n    Справочник с возможными значениями: vacancy_label в /dictionaries.\n    Возможно указание нескольких значений.\n\n    only_with_salary — показывать вакансии только с указанием зарплаты.\n    Возможные значения: true или false.\n    По умолчанию, используется false.\n\n    period — количество дней, в пределах которых нужно найти вакансии.\n    Максимальное значение: 30.\n\n    date_from – дата, которая ограничивает снизу диапазон дат публикации вакансий.\n    Нельзя передавать вместе с параметром period.\n    Значение указывается в формате ISO 8601 - YYYY-MM-DD или с точность до секунды YYYY-MM-DDThh:mm:ss±hhmm.\n    Указанное значение будет округлено до ближайших 5 минут.\n\n    date_to – дата, которая ограничивает сверху диапазон дат публикации вакансий.\n    Необходимо передавать только в паре с параметром date_from.\n    Нельзя передавать вместе с параметром period.\n    Значение указывается в формате ISO 8601 - YYYY-MM-DD или с точность до секунды YYYY-MM-DDThh:mm:ss±hhmm.\n    Указанное значение будет округлено до ближайших 5 минут.\n\n    top_lat, bottom_lat, left_lng, right_lng — значение гео-координат.\n    При поиске используется значение указанного в вакансии адреса.\n    Принимаемое значение — градусы в виде десятичной дроби.\n    Необходимо передавать одновременно все четыре параметра гео-координат, иначе вернется ошибка.\n\n    order_by — сортировка списка вакансий.\n    Справочник с возможными значениями: vacancy_search_order в /dictionaries.\n    Если выбрана сортировка по удалённости от гео-точки distance, необходимо также задать её координаты sort_point_lat,sort_point_lng.\n\n    sort_point_lat, sort_point_lng - значение гео-координат точки, по расстоянию от которой будут отсортированы вакансии. Необходимо указывать только, если order_by установлено в distance.\n\n    clusters — возвращать ли кластеры для данного поиска, по умолчанию: false.\n\n    describe_arguments — возвращать ли описание использованных параметров поиска, по умолчанию: false.\n\n    per_page, page — параметры пагинации. Параметр per_page ограничен значением в 100.\n\n    no_magic – Если значение true – отключить автоматическое преобразование вакансий. По умолчанию – false. При включённом автоматическом преобразовании, будет предпринята попытка изменить текстовый запрос пользователя на набор параметров. Например, запрос text=москва бухгалтер 100500 будет преобразован в text=бухгалтер%26only_with_salary=true%26area=1%26salary=100500.\n\n    premium – Если значение true – в сортировке вакансий будет учтены премиум вакансии. Такая сортировка используется на сайте. По умолчанию – false.\n",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hh",
+						"ru"
+					],
+					"path": [
+						"vacancies"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "Некоторые параметры принимают множественные значения: key=value%26key=value.\n\n    text — текстовое поле.\n    Переданное значение ищется в полях вакансии, указанных в параметре search_field.\n    Доступен язык запросов, как и на основном сайте: https://hh.ru/article/1175. Специально для этого поля есть автодополнение.\n\n    search_field — область поиска.\n    Справочник с возможными значениями: vacancy_search_fields в /dictionaries.\n    По умолчанию, используются все поля.\n    Возможно указание нескольких значений.\n\n    experience — опыт работы.\n    Справочник с возможными значениями: experience в /dictionaries.\n\n    employment — тип занятости.\n    Справочник с возможными значениями: employment в /dictionaries.\n    Возможно указание нескольких значений.\n\n    schedule — график работы.\n    Справочник с возможными значениями: schedule в /dictionaries.\n    Возможно указание нескольких значений.\n\n    area — регион. Справочник с возможными значениями: /areas.\n    Возможно указание нескольких значений.\n\n    metro — ветка или станция метро.\n    Справочник с возможными значениями: /metro.\n    Возможно указание нескольких значений.\n\n    specialization — профобласть или специализация.\n    Справочник с возможными значениями: /specializations.\n    Возможно указание нескольких значений.\n\n    industry - индустрия компании, разместившей вакансию. Справочник с возможными значениями: /industries. Возможно указание нескольких значений.\n\n    employer_id — идентификатор компании.\n    Возможно указание нескольких значений.\n\n    currency — код валюты.\n    Справочник с возможными значениями: currency (ключ code) в /dictionaries.\n    Имеет смысл указывать только совместно с параметром salary.\n\n    salary — размер заработной платы.\n    Если указано это поле, но не указано currency, то используется значение RUR у currency.\n    При указании значения будут найдены вакансии, в которых вилка зарплаты близка к указанной в запросе. При этом значения пересчитываются по текущим курсам ЦБ РФ. Например, при указании salary=100%26currency=EUR будут найдены вакансии, где вилка зарплаты указана в рублях и после пересчёта в Евро близка к 100 EUR. По умолчанию будут также найдены вакансии, в которых вилка зарплаты не указана, чтобы такие вакансии отфильтровать, используйте only_with_salary=true.\n\n    label — фильтр по меткам вакансий.\n    Справочник с возможными значениями: vacancy_label в /dictionaries.\n    Возможно указание нескольких значений.\n\n    only_with_salary — показывать вакансии только с указанием зарплаты.\n    Возможные значения: true или false.\n    По умолчанию, используется false.\n\n    period — количество дней, в пределах которых нужно найти вакансии.\n    Максимальное значение: 30.\n\n    date_from – дата, которая ограничивает снизу диапазон дат публикации вакансий.\n    Нельзя передавать вместе с параметром period.\n    Значение указывается в формате ISO 8601 - YYYY-MM-DD или с точность до секунды YYYY-MM-DDThh:mm:ss±hhmm.\n    Указанное значение будет округлено до ближайших 5 минут.\n\n    date_to – дата, которая ограничивает сверху диапазон дат публикации вакансий.\n    Необходимо передавать только в паре с параметром date_from.\n    Нельзя передавать вместе с параметром period.\n    Значение указывается в формате ISO 8601 - YYYY-MM-DD или с точность до секунды YYYY-MM-DDThh:mm:ss±hhmm.\n    Указанное значение будет округлено до ближайших 5 минут.\n\n    top_lat, bottom_lat, left_lng, right_lng — значение гео-координат.\n    При поиске используется значение указанного в вакансии адреса.\n    Принимаемое значение — градусы в виде десятичной дроби.\n    Необходимо передавать одновременно все четыре параметра гео-координат, иначе вернется ошибка.\n\n    order_by — сортировка списка вакансий.\n    Справочник с возможными значениями: vacancy_search_order в /dictionaries.\n    Если выбрана сортировка по удалённости от гео-точки distance, необходимо также задать её координаты sort_point_lat,sort_point_lng.\n\n    sort_point_lat, sort_point_lng - значение гео-координат точки, по расстоянию от которой будут отсортированы вакансии. Необходимо указывать только, если order_by установлено в distance.\n\n    clusters — возвращать ли кластеры для данного поиска, по умолчанию: false.\n\n    describe_arguments — возвращать ли описание использованных параметров поиска, по умолчанию: false.\n\n    per_page, page — параметры пагинации. Параметр per_page ограничен значением в 100.\n\n    no_magic – Если значение true – отключить автоматическое преобразование вакансий. По умолчанию – false. При включённом автоматическом преобразовании, будет предпринята попытка изменить текстовый запрос пользователя на набор параметров. Например, запрос text=москва бухгалтер 100500 будет преобразован в text=бухгалтер%26only_with_salary=true%26area=1%26salary=100500.\n\n    premium – Если значение true – в сортировке вакансий будет учтены премиум вакансии. Такая сортировка используется на сайте. По умолчанию – false.\n"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
